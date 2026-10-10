@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+title: "Deep Branches — Hominin Tree 3D: the human family tree"
+type: software
+version: 1.0.0
+date-released: 2026-10-10
+license: MIT
+authors:
+  - name: "Deep Branches contributors"
+abstract: >-
+  A free, non-commercial, educational interactive 3D timeline of hominin species with sources for each species.
+keywords:
+  - human evolution
+  - hominin
+  - paleoanthropology
+  - education
+  - three.js
+# Add your name, ORCID and the repository URL here once they exist:
+# repository-code: "https://github.com/YOUR-NAME/deep-branches"

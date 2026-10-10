@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Once you know your final address, add:  Sitemap: https://YOUR-SITE/sitemap.xml

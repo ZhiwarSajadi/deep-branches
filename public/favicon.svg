@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Deep Branches">
+  <rect width="64" height="64" rx="14" fill="#2a2522"/>
+  <g fill="none" stroke-linecap="round" stroke-width="4.5">
+    <path d="M32 54V34" stroke="#fffaf2"/>
+    <path d="M32 36C32 26 22 24 16 12" stroke="#e0901f"/>
+    <path d="M32 36C32 26 42 24 48 12" stroke="#3f8aa6"/>
+    <path d="M32 36V12" stroke="#c2472a"/>
+  </g>
+  <g fill="#fffaf2"><circle cx="16" cy="11" r="3.4"/><circle cx="32" cy="11" r="3.4"/><circle cx="48" cy="11" r="3.4"/></g>
+</svg>

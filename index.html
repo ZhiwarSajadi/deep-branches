@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>__TITLE__</title>
+    <meta name="description" content="__DESCRIPTION__" />
+    <meta name="theme-color" content="#d5ccc3" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="__BRAND__" />
+    <meta property="og:title" content="__TITLE__" />
+    <meta property="og:description" content="__DESCRIPTION__" />
+    <meta property="og:locale" content="en" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="__TITLE__" />
+    <meta name="twitter:description" content="__DESCRIPTION__" />
+    __SEO_URL_TAGS__
+    <script type="application/ld+json">__JSON_LD__</script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Replaced as soon as the app mounts -->
+      <div class="boot" role="status">
+        <div>
+          <strong>__BRAND__</strong>
+          <span>Loading the tree…</span>
+          <i></i>
+        </div>
+      </div>
+    </div>
+    <noscript>
+      <div class="noscript">
+        <h1>__TITLE__</h1>
+        <p>This interactive 3D visualisation needs JavaScript. Here is the same information as a plain list.</p>
+        __NOSCRIPT_LIST__
+        <p>
+          Free, non-commercial educational project. Content was drafted with the help of an AI assistant and may
+          contain errors; check the linked sources.
+        </p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
