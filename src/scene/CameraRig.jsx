@@ -9,7 +9,7 @@ export function CameraRig({ time, follow, cardOpen, autoRotate, fp }) {
   let r = useRef(),
     i = useRef(null),
     { camera: a, size: s, gl } = useThree(),
-    u = s.width > 760,
+    u = s.width > 960,
     st = useRef({
       yaw: 0,
       pitch: 0,

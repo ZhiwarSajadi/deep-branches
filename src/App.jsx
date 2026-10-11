@@ -194,7 +194,10 @@ export function App() {
           species · double-click to step inside · space to play.
         </p>
       </header>
-      <nav className={`legend ${fp ? "fp-off" : ""} ${ancestorsOnly ? "am" : ""}`} aria-label="Lineages">
+      <nav
+        className={`legend ${fp ? "fp-off" : ""} ${ancestorsOnly ? "am" : ""} ${selected ? "card-open" : ""} ${expandedMedia ? "media-open" : ""}`}
+        aria-label="Lineages"
+      >
         {Object.entries(CLADES).map(([v, y]) => (
           <button
             onClick={() => onLegendClick(v)}
