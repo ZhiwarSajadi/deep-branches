@@ -28,19 +28,13 @@ Other scripts:
 | `npm run check:links` | Checks every source link over the internet (needs a connection). Some publishers answer bots with 403; those are reported as "blocked" and need a manual look. |
 | `npm run check:release` | Pre-launch checklist on `dist/` (no source maps, no Google Fonts, licences present, empty config warnings). |
 
-## Before you publish
-
-Read **[docs/PUBLISHING.md](docs/PUBLISHING.md)** (Persian version: [docs/PUBLISHING_FA.md](docs/PUBLISHING_FA.md)).
-In short: fill in `src/site.js` (site URL, contact email/repo), run `npm run check:links`, verify the facts
-against the sources, decide on the skull illustrations, build, run `npm run check:release`, deploy `dist/`.
-
 ## Project layout
 
 ```
 src/
   data/species.js     species, dates, layout coordinates, clade colours   <- edit to add/fix species
   data/sources.js     citations per species id                             <- edit to add/fix sources
-  site.js             brand text, version, URLs, contact (fill these in)
+  site.js             brand text, version, URLs, contact
   config.js           feature flags (skull illustrations)
   scene/              3D scene (react-three-fiber): branches, columns, camera rig
   components/         first-person HUD, About dialog, no-WebGL fallback, species list
@@ -65,7 +59,7 @@ scripts/              validate-data, check-links, check-release
 - Code: MIT (`LICENSE`).
 - Text and data: CC BY 4.0 (`LICENSE-CONTENT.md`).
 - Third-party libraries and fonts: generated into `THIRD_PARTY_LICENSES.txt` at build time.
-- Skull illustrations are **not** included by default; see `src/assets/skulls/README.md`.
+- Skull photographs and reconstructions: CC-licensed via Wikimedia Commons (see `src/data/skulls.on.js` and `src/data/reconstructions.on.js`).
 
 ## Known notes
 

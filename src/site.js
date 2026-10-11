@@ -23,7 +23,7 @@ export const SITE = {
   version: "1.0.0",
   lastUpdated: "2026-10-10",
 
-  // ---- Fill these in before launch (see docs/PUBLISHING.md). Empty values are simply hidden. ----
+  // ---- Fill these in before launch. Empty values are simply hidden. ----
   siteUrl: "https://zhiwarsajadi.github.io/deep-branches/",
   repoUrl: "https://github.com/ZhiwarSajadi/deep-branches",
   contactEmail: "", // for corrections and takedown requests
