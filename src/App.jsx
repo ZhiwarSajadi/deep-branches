@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Pause, Play, RotateCcw, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Pause, Play, RotateCcw, X } from "lucide-react";
 import { ANC_CHAIN, FP_STATE, ROOT_NODE, fpKids, fpName, fpParent } from "./lib/lineage.js";
 import { CLADES, SPECIES, SPECIES_BY_ID } from "./data/species.js";
 import { Scene } from "./scene/Scene.jsx";
@@ -25,6 +25,7 @@ export function App() {
     [ancestorsOnly, setAncestorsOnly] = useState(false),
     [hideLabels, setHideLabels] = useState(false),
     [expandedMedia, setExpandedMedia] = useState(null),
+    [cardMinimized, setCardMinimized] = useState(false),
     expandedMediaRef = useRef(null),
     fpRef = useRef(null),
     rafRef = useRef();
@@ -51,7 +52,10 @@ export function App() {
     FP_STATE.chain = ancestorsOnly ? ANC_CHAIN : null;
   }, [ancestorsOnly]);
   useEffect(() => {
-    if (!selectedId) setExpandedMedia(null);
+    if (!selectedId) {
+      setExpandedMedia(null);
+      setCardMinimized(false);
+    }
   }, [selectedId]);
   let togglePlay = () => {
       if (timeMa <= 0.05) {
@@ -174,6 +178,7 @@ export function App() {
           onFp={enterFp}
           ancm={ancestorsOnly}
           hideLabels={hideLabels}
+          cardMinimized={cardMinimized}
         />
       </Canvas>
       <header className={`head ${selected || fp ? "quiet" : ""} ${fp ? "fp-on" : ""}`}>
@@ -194,95 +199,6 @@ export function App() {
           species · double-click to step inside · space to play.
         </p>
       </header>
-      <nav
-        className={`legend ${fp ? "fp-off" : ""} ${ancestorsOnly ? "am" : ""} ${selected ? "card-open" : ""} ${expandedMedia ? "media-open" : ""}`}
-        aria-label="Lineages"
-      >
-        {Object.entries(CLADES).map(([v, y]) => (
-          <button
-            onClick={() => onLegendClick(v)}
-            className={hiddenClades.has(v) && !ancestorsOnly ? "off" : ""}
-            style={{
-              "--c": y.color,
-            }}
-            aria-pressed={!hiddenClades.has(v)}
-            key={v}
-          >
-            <span />
-            {y.label}
-          </button>
-        ))}
-        <div className="legend-actions">
-          <button
-            type="button"
-            className={`mode-btn ${ancestorsOnly ? "on" : ""}`}
-            onClick={toggleAnc}
-            aria-pressed={ancestorsOnly}
-            title="Show only the direct line of ancestors leading to Homo sapiens"
-          >
-            <svg
-              width={14}
-              height={14}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2.2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx={6} cy={19} r={2.2} />
-              <circle cx={12} cy={12} r={2.2} />
-              <circle cx={18} cy={5} r={2.2} />
-              <path d="M7.6 17.4l2.8-3.8M13.6 10.4l2.8-3.8" />
-            </svg>
-            Direct Ancestors
-          </button>
-          <button
-            type="button"
-            className={`mode-btn hide-labels-btn ${hideLabels ? "on" : ""}`}
-            onClick={() => setHideLabels((v) => !v)}
-            aria-pressed={hideLabels}
-            title="Hide species labels to view bars clearly (L)"
-          >
-            <svg
-              width={14}
-              height={14}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2.2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              {hideLabels ? (
-                <>
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </>
-              ) : (
-                <>
-                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-                  <line x1="1" y1="1" x2="23" y2="23" />
-                </>
-              )}
-            </svg>
-            {hideLabels ? "Show Labels" : "Hide Labels"}
-          </button>
-        </div>
-        {(hiddenClades.size > 0 || ancestorsOnly) && (
-          <button
-            onClick={() => {
-              setHiddenClades(new Set());
-              setAncestorsOnly(false);
-            }}
-            className="reset-filters"
-          >
-            Show all
-          </button>
-        )}
-      </nav>
       {fp && <FpHud fp={fp} onJump={enterFp} />}
       {fp && (
         <div className="fp-hint">
@@ -300,26 +216,38 @@ export function App() {
       )}
       {selected && (
         <aside
-          className={`card ${fp ? "in-fp" : ""}`}
+          className={`card ${fp ? "in-fp" : ""} ${cardMinimized ? "minimized" : ""}`}
           style={{
             "--c": accent,
           }}
           key={selected.id}
         >
-          <div className="card-top">
+          <div
+            className="card-top"
+            onClick={() => cardMinimized && setCardMinimized(false)}
+            title={cardMinimized ? "Click to expand details" : undefined}
+          >
             <div className="card-nav">
               <button
+                type="button"
                 className="card-nav-btn"
                 disabled={!prevSp}
-                onClick={() => prevSp && go(prevSp.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevSp && go(prevSp.id);
+                }}
                 title={prevSp ? `Earlier: ${fpName(prevSp)}` : "Earliest"}
               >
                 ←
               </button>
               <button
+                type="button"
                 className="card-nav-btn"
                 disabled={!nextSp}
-                onClick={() => nextSp && go(nextSp.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextSp && go(nextSp.id);
+                }}
                 title={nextSp ? `Later: ${fpName(nextSp)}` : "Latest"}
               >
                 →
@@ -327,184 +255,210 @@ export function App() {
               <span className="card-clade">
                 {selected.id === "root" ? "Common ancestor" : CLADES[selected.clade].label}
               </span>
+              {cardMinimized && (
+                <span className="card-min-name">
+                  <i>{selected.genus} {selected.sp}</i>
+                </span>
+              )}
             </div>
-            <button
-              className="x"
-              onClick={() => {
-                setFp(null);
-                setSelectedId(null);
-              }}
-              aria-label="Close"
-            >
-              <X size={17} />
-            </button>
+            <div className="card-top-actions">
+              <button
+                type="button"
+                className="card-min-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCardMinimized((m) => !m);
+                }}
+                aria-label={cardMinimized ? "Maximize details card" : "Minimize details card"}
+                title={cardMinimized ? "Maximize card" : "Minimize card"}
+              >
+                {cardMinimized ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </button>
+              <button
+                type="button"
+                className="x"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setFp(null);
+                  setSelectedId(null);
+                  setCardMinimized(false);
+                }}
+                aria-label="Close"
+              >
+                <X size={17} />
+              </button>
+            </div>
           </div>
 
-          <div className="card-heading">
-            <h2>
-              <i>
-                {selected.genus} {selected.sp}
-              </i>
-            </h2>
-            {(() => {
-              const pron = pronunciationFor(selected.id);
-              if (!pron) return null;
-              return (
-                <div className="card-pron" title={`Pronunciation: ${pron.guide} (${pron.ipa})`}>
-                  <span className="pron-guide">{pron.guide}</span>
-                  <span className="pron-ipa">{pron.ipa}</span>
-                </div>
-              );
-            })()}
-            <div className="card-meta">
-              <span className="range">{selected.id === "root" ? "~7.5 Ma (estimated)" : formatRange(selected)}</span>
-              <span className="meta-sep">·</span>
-              <span className="place">{selected.place}</span>
-            </div>
-          </div>
-
-          {(() => {
-            const sk = skullFor(selected.id);
-            const rc = reconFor(selected.id);
-            if (!sk && !rc) return null;
-            return (
-              <div className={`card-media-grid ${rc && sk ? "dual" : "single"}`}>
-                {rc && (
-                  <div
-                    className="card-media-card clickable"
-                    onClick={() => setExpandedMedia("recon")}
-                    title="Click to view enlarged reconstruction on the left"
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        setExpandedMedia("recon");
-                      }
-                    }}
-                  >
-                    <div className="media-img-wrap">
-                      <img
-                        src={rc.url}
-                        alt={`${selected.genus} ${selected.sp} life & facial reconstruction`}
-                        loading="lazy"
-                      />
-                      <span className="media-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+          {!cardMinimized && (
+            <>
+              <div className="card-heading">
+                <h2>
+                  <i>
+                    {selected.genus} {selected.sp}
+                  </i>
+                </h2>
+                {(() => {
+                  const pron = pronunciationFor(selected.id);
+                  if (!pron) return null;
+                  return (
+                    <div className="card-pron" title={`Pronunciation: ${pron.guide} (${pron.ipa})`}>
+                      <span className="pron-guide">{pron.guide}</span>
+                      <span className="pron-ipa">{pron.ipa}</span>
                     </div>
-                    <div className="media-meta">
-                      <span className="media-kind">Reconstruction</span>
-                      <a
-                        href={rc.source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="media-link"
-                        onClick={(e) => e.stopPropagation()}
-                        title={`${rc.title ? rc.title + " · " : ""}By ${rc.author} (${rc.license})`}
+                  );
+                })()}
+                <div className="card-meta">
+                  <span className="range">{selected.id === "root" ? "~7.5 Ma (estimated)" : formatRange(selected)}</span>
+                  <span className="meta-sep">·</span>
+                  <span className="place">{selected.place}</span>
+                </div>
+              </div>
+
+              {(() => {
+                const sk = skullFor(selected.id);
+                const rc = reconFor(selected.id);
+                if (!sk && !rc) return null;
+                return (
+                  <div className={`card-media-grid ${rc && sk ? "dual" : "single"}`}>
+                    {rc && (
+                      <div
+                        className="card-media-card clickable"
+                        onClick={() => setExpandedMedia("recon")}
+                        title="Click to view enlarged reconstruction on the left"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setExpandedMedia("recon");
+                          }
+                        }}
                       >
-                        {rc.license} ↗
-                      </a>
-                    </div>
+                        <div className="media-img-wrap">
+                          <img
+                            src={rc.url}
+                            alt={`${selected.genus} ${selected.sp} life & facial reconstruction`}
+                            loading="lazy"
+                          />
+                          <span className="media-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+                        </div>
+                        <div className="media-meta">
+                          <span className="media-kind">Reconstruction</span>
+                          <a
+                            href={rc.source}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="media-link"
+                            onClick={(e) => e.stopPropagation()}
+                            title={`${rc.title ? rc.title + " · " : ""}By ${rc.author} (${rc.license})`}
+                          >
+                            {rc.license} ↗
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                    {sk && (
+                      <div
+                        className="card-media-card clickable"
+                        onClick={() => setExpandedMedia("fossil")}
+                        title="Click to view enlarged fossil specimen on the left"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setExpandedMedia("fossil");
+                          }
+                        }}
+                      >
+                        <div className="media-img-wrap">
+                          <img
+                            src={typeof sk === "object" ? sk.url : sk}
+                            alt={`${selected.genus} ${selected.sp} fossil specimen`}
+                            loading="lazy"
+                          />
+                          <span className="media-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+                        </div>
+                        <div className="media-meta">
+                          <span className="media-kind">Fossil specimen</span>
+                          {typeof sk === "object" && sk.author && (
+                            <a
+                              href={sk.source}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="media-link"
+                              onClick={(e) => e.stopPropagation()}
+                              title={`${sk.specimen ? sk.specimen + " · " : ""}Photo: ${sk.author} (${sk.license})`}
+                            >
+                              {sk.license} ↗
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-                {sk && (
-                  <div
-                    className="card-media-card clickable"
-                    onClick={() => setExpandedMedia("fossil")}
-                    title="Click to view enlarged fossil specimen on the left"
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        setExpandedMedia("fossil");
-                      }
-                    }}
-                  >
-                    <div className="media-img-wrap">
-                      <img
-                        src={typeof sk === "object" ? sk.url : sk}
-                        alt={`${selected.genus} ${selected.sp} fossil specimen`}
-                        loading="lazy"
-                      />
-                      <span className="media-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
-                    </div>
-                    <div className="media-meta">
-                      <span className="media-kind">Fossil specimen</span>
-                      {typeof sk === "object" && sk.author && (
-                        <a
-                          href={sk.source}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="media-link"
-                          onClick={(e) => e.stopPropagation()}
-                          title={`${sk.specimen ? sk.specimen + " · " : ""}Photo: ${sk.author} (${sk.license})`}
-                        >
-                          {sk.license} ↗
+                );
+              })()}
+
+              <p className="note">{selected.note}</p>
+
+              <div className="card-action-bar">
+                <button
+                  className={`fp-btn ${fp === selected.id ? "on" : ""}`}
+                  onClick={() => (fp === selected.id ? setFp(null) : enterFp(selected.id))}
+                  title={
+                    fp === selected.id ? "Back to the full tree (Esc)" : "Stand inside this bar and look around"
+                  }
+                >
+                  {fp === selected.id ? "⤺ Third-person view" : "◉ First-person view"}
+                </button>
+                {selected.dashed && <span className="debate">Ancestry debated</span>}
+              </div>
+
+              <div className="card-footer-rows">
+                {selected.src && selected.src.length > 0 && (
+                  <div className="card-row sources">
+                    <span className="row-label">Sources:</span>
+                    <div className="row-links">
+                      {selected.src.map((x, k) => (
+                        <a key={k} href={x[1]} target="_blank" rel="noopener noreferrer" title={x[0]}>
+                          {x[0].split(",")[0].replace(" Program", "")} ↗
                         </a>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })()}
-
-          <p className="note">{selected.note}</p>
-
-          <div className="card-action-bar">
-            <button
-              className={`fp-btn ${fp === selected.id ? "on" : ""}`}
-              onClick={() => (fp === selected.id ? setFp(null) : enterFp(selected.id))}
-              title={
-                fp === selected.id ? "Back to the full tree (Esc)" : "Stand inside this bar and look around"
-              }
-            >
-              {fp === selected.id ? "⤺ Third-person view" : "◉ First-person view"}
-            </button>
-            {selected.dashed && <span className="debate">Ancestry debated</span>}
-          </div>
-
-          <div className="card-footer-rows">
-            {selected.src && selected.src.length > 0 && (
-              <div className="card-row sources">
-                <span className="row-label">Sources:</span>
-                <div className="row-links">
-                  {selected.src.map((x, k) => (
-                    <a key={k} href={x[1]} target="_blank" rel="noopener noreferrer" title={x[0]}>
-                      {x[0].split(",")[0].replace(" Program", "")} ↗
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {(anc || descs.length > 0) && (
-              <div className="card-row ancestry">
-                {anc && (
-                  <div className="anc-group">
-                    <span className="row-label">Ancestor:</span>
-                    <div className="anc-pills">
-                      <button className="ancestry-btn" onClick={() => go(anc.id)}>
-                        {fpName(anc)}
-                      </button>
-                    </div>
-                  </div>
-                )}
-                {descs.length > 0 && (
-                  <div className="anc-group">
-                    <span className="row-label">{descs.length > 1 ? "Descendants:" : "Descendant:"}</span>
-                    <div className="anc-pills">
-                      {descs.map((d) => (
-                        <button key={d.id} className="ancestry-btn" onClick={() => go(d.id)}>
-                          {fpName(d)}
-                        </button>
                       ))}
                     </div>
                   </div>
                 )}
+
+                {(anc || descs.length > 0) && (
+                  <div className="card-row ancestry">
+                    {anc && (
+                      <div className="anc-group">
+                        <span className="row-label">Ancestor:</span>
+                        <div className="anc-pills">
+                          <button className="ancestry-btn" onClick={() => go(anc.id)}>
+                            {fpName(anc)}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    {descs.length > 0 && (
+                      <div className="anc-group">
+                        <span className="row-label">{descs.length > 1 ? "Descendants:" : "Descendant:"}</span>
+                        <div className="anc-pills">
+                          {descs.map((d) => (
+                            <button key={d.id} className="ancestry-btn" onClick={() => go(d.id)}>
+                              {fpName(d)}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </>
+          )}
         </aside>
       )}
       {selected && expandedMedia && (
@@ -591,77 +545,168 @@ export function App() {
           })()}
         </aside>
       )}
-      <footer className="dock">
-        <button
-          className="play"
-          onClick={togglePlay}
-          aria-label={playing ? "Pause" : "Play"}
-          title={playing ? "Pause" : "Play"}
+      <div className="dock-container">
+        <nav
+          className={`legend ${fp ? "fp-off" : ""} ${ancestorsOnly ? "am" : ""} ${selected && !cardMinimized ? "card-open" : ""} ${expandedMedia ? "media-open" : ""}`}
+          aria-label="Lineages"
         >
-          {playing ? <Pause size={22} /> : timeMa <= 0.05 ? <RotateCcw size={22} /> : <Play size={22} />}
-        </button>
-        <button
-          className={`orbit ${autoRotate ? "" : "off"}`}
-          onClick={() => setAutoRotate((v) => !v)}
-          aria-label={autoRotate ? "Pause 3D orbit" : "Resume 3D orbit"}
-          title={autoRotate ? "Pause 3D rotation" : "Resume 3D rotation"}
-        >
-          <svg
-            width={20}
-            height={20}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
+          {Object.entries(CLADES).map(([v, y]) => (
+            <button
+              onClick={() => onLegendClick(v)}
+              className={hiddenClades.has(v) && !ancestorsOnly ? "off" : ""}
+              style={{
+                "--c": y.color,
+              }}
+              aria-pressed={!hiddenClades.has(v)}
+              key={v}
+            >
+              <span />
+              {y.label}
+            </button>
+          ))}
+          <div className="legend-actions">
+            <button
+              type="button"
+              className={`mode-btn ${ancestorsOnly ? "on" : ""}`}
+              onClick={toggleAnc}
+              aria-pressed={ancestorsOnly}
+              title="Show only the direct line of ancestors leading to Homo sapiens"
+            >
+              <svg
+                width={14}
+                height={14}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2.2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx={6} cy={19} r={2.2} />
+                <circle cx={12} cy={12} r={2.2} />
+                <circle cx={18} cy={5} r={2.2} />
+                <path d="M7.6 17.4l2.8-3.8M13.6 10.4l2.8-3.8" />
+              </svg>
+              Direct Ancestors
+            </button>
+            <button
+              type="button"
+              className={`mode-btn hide-labels-btn ${hideLabels ? "on" : ""}`}
+              onClick={() => setHideLabels((v) => !v)}
+              aria-pressed={hideLabels}
+              title="Hide species labels to view bars clearly (L)"
+            >
+              <svg
+                width={14}
+                height={14}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2.2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                {hideLabels ? (
+                  <>
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </>
+                ) : (
+                  <>
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </>
+                )}
+              </svg>
+              {hideLabels ? "Show Labels" : "Hide Labels"}
+            </button>
+          </div>
+          {(hiddenClades.size > 0 || ancestorsOnly) && (
+            <button
+              onClick={() => {
+                setHiddenClades(new Set());
+                setAncestorsOnly(false);
+              }}
+              className="reset-filters"
+            >
+              Show all
+            </button>
+          )}
+        </nav>
+        <footer className="dock">
+          <button
+            className="play"
+            onClick={togglePlay}
+            aria-label={playing ? "Pause" : "Play"}
+            title={playing ? "Pause" : "Play"}
           >
-            <circle cx={12} cy={12} r={10} />
-            <path d="m4.93 4.93 4.24 4.24" />
-            <path d="m14.83 9.17 4.24-4.24" />
-            <path d="m14.83 14.83 4.24 4.24" />
-            <path d="m9.17 14.83-4.24 4.24" />
-          </svg>
-        </button>
-        <div className="readout">
-          <strong>{formatMa(timeMa)}</strong>
-          <span>
-            {timeMa <= 0.004
-              ? "1 hominin left standing"
-              : `${aliveCount} ${ancestorsOnly ? "direct ancestor" : "hominin"}${aliveCount === 1 ? "" : "s"} alive`}
-          </span>
-        </div>
-        <label className="scrub">
-          <span>8 Ma</span>
-          <input
-            type="range"
-            min={0}
-            max={8}
-            step={0.01}
-            value={8 - timeMa}
-            aria-label="Time"
-            onChange={(v) => {
-              (setPlaying(false), setTimeMa(8 - Number(v.target.value)));
-            }}
-            style={{
-              "--p": `${((8 - timeMa) / 8) * 100}%`,
-            }}
-          />
-          <span>Today</span>
-        </label>
-        <a
-          href="https://github.com/ZhiwarSajadi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="dock-author"
-          title="Zhiwar Sajadi on GitHub"
-        >
-          <svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-          </svg>
-          <span>Zhiwar Sajadi</span>
-        </a>
-      </footer>
+            {playing ? <Pause size={22} /> : timeMa <= 0.05 ? <RotateCcw size={22} /> : <Play size={22} />}
+          </button>
+          <button
+            className={`orbit ${autoRotate ? "" : "off"}`}
+            onClick={() => setAutoRotate((v) => !v)}
+            aria-label={autoRotate ? "Pause 3D orbit" : "Resume 3D orbit"}
+            title={autoRotate ? "Pause 3D rotation" : "Resume 3D rotation"}
+          >
+            <svg
+              width={20}
+              height={20}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx={12} cy={12} r={10} />
+              <path d="m4.93 4.93 4.24 4.24" />
+              <path d="m14.83 9.17 4.24-4.24" />
+              <path d="m14.83 14.83 4.24 4.24" />
+              <path d="m9.17 14.83-4.24 4.24" />
+            </svg>
+          </button>
+          <div className="readout">
+            <strong>{formatMa(timeMa)}</strong>
+            <span>
+              {timeMa <= 0.004
+                ? "1 hominin left standing"
+                : `${aliveCount} ${ancestorsOnly ? "direct ancestor" : "hominin"}${aliveCount === 1 ? "" : "s"} alive`}
+            </span>
+          </div>
+          <label className="scrub">
+            <span>8 Ma</span>
+            <input
+              type="range"
+              min={0}
+              max={8}
+              step={0.01}
+              value={8 - timeMa}
+              aria-label="Time"
+              onChange={(v) => {
+                (setPlaying(false), setTimeMa(8 - Number(v.target.value)));
+              }}
+              style={{
+                "--p": `${((8 - timeMa) / 8) * 100}%`,
+              }}
+            />
+            <span>Today</span>
+          </label>
+          <a
+            href="https://github.com/ZhiwarSajadi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="dock-author"
+            title="Zhiwar Sajadi on GitHub"
+          >
+            <svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            <span>Zhiwar Sajadi</span>
+          </a>
+        </footer>
+      </div>
       <section className="sr-only" aria-label="All species, in plain text">
         <h2>Hominin species, oldest first</h2>
         <SpeciesList />

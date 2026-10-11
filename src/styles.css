@@ -385,6 +385,12 @@ body {
   text-transform: uppercase;
   margin-left: 6px;
 }
+.card .card-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.card .card-min-btn,
 .card .x {
   border: 0;
   background: none;
@@ -396,12 +402,34 @@ body {
   place-items: center;
   transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s, color 0.15s;
 }
+.card .card-min-btn:hover,
 .card .x:hover {
   background: rgba(42, 37, 34, 0.08);
   color: var(--ink);
 }
+.card .card-min-btn:active,
 .card .x:active {
   transform: scale(0.90);
+}
+.card.minimized {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: 44px !important;
+  padding: 6px 14px 6px 12px !important;
+  border-radius: 99px !important;
+  box-shadow: 0 4px 18px rgba(42, 37, 34, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 2px 0 var(--c);
+}
+.card.minimized .card-top {
+  margin-bottom: 0;
+}
+.card .card-min-name {
+  font: 600 13px/1.2 Playfair Display, Georgia, serif;
+  color: var(--ink);
+  margin-left: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
 }
 
 .card .card-heading {
@@ -847,6 +875,9 @@ body {
 .card .ancestry-btn:active {
   transform: translateY(0) scale(0.95);
   transition-duration: 0.05s;
+}
+.dock-container {
+  display: contents;
 }
 .dock {
   position: absolute;
@@ -1696,11 +1727,86 @@ body:has(.fallback) {
     display: none;
   }
 
-  /* Dock: 2-row layout using CSS Grid */
+  /* Dock Container: Unified flex column anchored to bottom of viewport */
+  .dock-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: max(10px, var(--sab));
+    padding-left: max(12px, var(--sal));
+    padding-right: max(12px, var(--sar));
+    z-index: 30;
+    pointer-events: none;
+  }
+  .dock-container > * {
+    pointer-events: auto;
+  }
+
+  /* Legend: horizontal swipeable pill bar flowed directly above dock in natural flex flow */
+  .legend {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    max-width: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 2px 4px;
+    gap: 6px;
+    justify-content: flex-start;
+    mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent);
+  }
+  .legend::-webkit-scrollbar {
+    display: none;
+  }
+  .legend button {
+    flex: none;
+    height: 28px;
+    padding: 4px 10px 4px 8px;
+    font-size: 12px;
+  }
+  .legend-actions {
+    flex-direction: row !important;
+    gap: 6px;
+    flex: none;
+    margin-left: 0;
+    align-items: center;
+  }
+  .legend .mode-btn {
+    flex: none;
+    height: 28px;
+    font-size: 12px;
+  }
+  .legend .reset-filters {
+    flex: none;
+    height: 28px;
+    font-size: 12px;
+  }
+  .legend.card-open,
+  .legend.media-open {
+    display: none;
+  }
+
+  /* Dock: sits directly below legend in natural flex flow */
   .dock {
-    left: calc(12px + var(--sal));
-    right: calc(12px + var(--sar));
-    bottom: calc(10px + var(--sab));
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
     display: grid;
     grid-template-columns: auto auto 1fr auto;
     grid-template-rows: auto auto;
@@ -1750,78 +1856,34 @@ body:has(.fallback) {
     height: 32px;
   }
 
-  /* Legend: horizontal swipeable pill bar directly above dock */
-  .legend {
-    top: auto;
-    bottom: calc(90px + var(--sab));
-    left: 0;
-    right: 0;
-    max-width: none;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 4px calc(14px + var(--sar)) 4px calc(14px + var(--sal));
-    gap: 6px;
-    justify-content: flex-start;
-    z-index: 30;
-    mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent);
-  }
-  .legend::-webkit-scrollbar {
-    display: none;
-  }
-  .legend button {
-    flex: none;
-    height: 28px;
-    padding: 4px 10px 4px 8px;
-    font-size: 12px;
-  }
-  .legend-actions {
-    flex-direction: row !important;
-    gap: 6px;
-    flex: none;
-    margin-left: 0;
-    align-items: center;
-  }
-  .legend .mode-btn {
-    flex: none;
-    height: 28px;
-    font-size: 12px;
-  }
-  .legend .reset-filters {
-    flex: none;
-    height: 28px;
-    font-size: 12px;
-  }
-  .legend.card-open,
-  .legend.media-open {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(6px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-  }
-
   /* Species details card */
   .card {
-    inset: auto calc(12px + var(--sar)) calc(90px + var(--sab)) calc(12px + var(--sal));
+    inset: auto calc(12px + var(--sar)) calc(82px + var(--sab)) calc(12px + var(--sal));
     width: auto;
     height: auto;
     max-width: 500px;
     margin: 0 auto;
-    max-height: calc(100vh - 114px - var(--sat) - var(--sab));
+    max-height: calc(100vh - 100px - var(--sat) - var(--sab));
     transform: none;
     padding: 13px 16px 15px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
+  .card.minimized {
+    inset: auto calc(12px + var(--sar)) calc(82px + var(--sab)) calc(12px + var(--sal));
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .card.in-fp.minimized {
+    inset: auto calc(12px + var(--sar)) calc(82px + var(--sab)) auto;
+    max-width: min(320px, calc(100vw - 32px));
+    margin: 0;
+  }
   .card .card-nav-btn {
     width: 28px;
     height: 28px;
   }
+  .card .card-min-btn,
   .card .x {
     padding: 6px;
   }
@@ -1948,10 +2010,13 @@ body:has(.fallback) {
   .brand {
     margin: 0 0 4px;
   }
+  .dock-container {
+    padding-bottom: max(6px, var(--sab));
+    padding-left: max(10px, var(--sal));
+    padding-right: max(10px, var(--sar));
+    gap: 4px;
+  }
   .dock {
-    left: calc(12px + var(--sal));
-    right: calc(12px + var(--sar));
-    bottom: calc(6px + var(--sab));
     gap: 4px 6px;
   }
   .scrub {
@@ -1978,11 +2043,10 @@ body:has(.fallback) {
     font-size: 11px;
   }
   .legend {
-    bottom: calc(66px + var(--sab));
-    padding: 2px calc(12px + var(--sar)) 2px calc(12px + var(--sal));
+    padding: 2px 2px;
   }
   .legend button {
-    height: 25px;
+    height: 24px;
     font-size: 11px;
     padding: 3px 8px;
   }
@@ -1991,16 +2055,26 @@ body:has(.fallback) {
     gap: 4px;
   }
   .card {
-    inset: calc(8px + var(--sat)) calc(12px + var(--sar)) calc(72px + var(--sab)) auto;
+    inset: calc(8px + var(--sat)) calc(12px + var(--sar)) calc(64px + var(--sab)) auto;
     width: min(340px, 48vw);
     max-width: none;
     max-height: none;
     padding: 10px 14px 12px;
     margin: 0;
   }
+  .card.minimized {
+    inset: auto calc(12px + var(--sar)) calc(64px + var(--sab)) auto;
+    width: min(340px, 48vw);
+    max-width: none;
+  }
   .card.in-fp {
     inset: calc(8px + var(--sat)) calc(12px + var(--sar)) calc(64px + var(--sab)) auto;
     width: 250px;
+  }
+  .card.in-fp.minimized {
+    inset: auto calc(12px + var(--sar)) calc(64px + var(--sab)) auto;
+    width: auto;
+    max-width: 260px;
   }
   .card-media-expanded {
     inset: calc(6px + var(--sat)) calc(10px + var(--sar)) calc(6px + var(--sab)) calc(10px + var(--sal));

@@ -18,6 +18,7 @@ export function Scene({
   onFp,
   ancm,
   hideLabels,
+  cardMinimized,
 }) {
   let rootRole = fpRole(fp, "root"),
     rootRel = rootRole === "anc" || rootRole === "desc",
@@ -131,7 +132,7 @@ export function Scene({
         <NowPlane time={time} />
       </group>
       <Sparkles count={70} scale={[22, 16, 12]} size={2.2} speed={0.25} opacity={0.5} color="#fff6e6" />
-      <CameraRig time={time} follow={follow && !fp} cardOpen={!!selected} autoRotate={autoRotate} fp={fp} />
+      <CameraRig time={time} follow={follow && !fp} cardOpen={!!selected && !cardMinimized} autoRotate={autoRotate} fp={fp} />
     </>
   );
 }
