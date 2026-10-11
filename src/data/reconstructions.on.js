@@ -9,46 +9,40 @@ const imageMap = Object.fromEntries(
 
 export const RECON_METADATA = {
   "sahelanthropus": {
-    "title": "Sahelanthropus tchadensis",
-    "author": "Ghedoghedo",
+    "title": "Sahelanthropus tchadensis life reconstruction",
+    "author": "Sisyphos23 (based on Mateus Zica)",
     "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3ASahelanthropus%20tchadensis.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:SahelanthropusCL.png"
   },
   "orrorin": {
-    "title": "Orrorin tugenensis",
-    "author": "it:User:Lucius",
-    "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AOrrorin%20tugenensis.jpg"
-  },
-  "kadabba": {
-    "title": "Ardipithecus kadabba fossils",
-    "author": "it:User:Lucius",
-    "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AArdipithecus%20kadabba%20fossils.jpg"
+    "title": "Orrorin tugenensis skull & skeleton exhibit (Natural History Museum, London)",
+    "author": "Emőke Dénes",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Em_-_Hominidae_sp._-_6.jpg"
   },
   "ramidus": {
-    "title": "Ardipithecus ramidus Ardi IMG 5604 BMNH",
-    "author": "Bjoertvedt",
+    "title": "Ardipithecus ramidus (Ardi) anatomical reconstruction",
+    "author": "Keith Chan",
     "license": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AArdipithecus%20ramidus%20Ardi%20IMG%205604%20BMNH.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Ardi_and_Lucy_Reconstruction_Comparison.png"
   },
   "anamensis": {
-    "title": "Australopithecus anamensis",
-    "author": "Unknown",
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File%3AAustralopithecus%20anamensis.png"
+    "title": "Australopithecus anamensis jaws and postcrania exhibit (Royal Belgian Institute of Natural Sciences)",
+    "author": "Ghedoghedo",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Australopithecus_anamensis_5476.JPG"
   },
   "afarensis": {
-    "title": "Lucy (Frankfurt am Main) cropped",
-    "author": "Chiswick Chap",
-    "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3ALucy%20(Frankfurt%20am%20Main)%20cropped.jpg"
+    "title": "Lucy (Australopithecus afarensis) forensic facial approximation",
+    "author": "Cicero Moraes",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lucy_-_Australopithecus_afarensis_-_forensic_facial_approximation.jpg"
   },
   "prometheus": {
-    "title": "Litte Foot, Skull",
-    "author": "Wits University",
-    "license": "CC BY 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3ALitte%20Foot%2C%20Skull.JPG"
+    "title": "Australopithecus from Sterkfontein (Little Foot) life reconstruction",
+    "author": "Pflege24",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Homme_de_Sterkfontein.jpg"
   },
   "bahrelghazali": {
     "title": "Abel australopithecus",
@@ -57,22 +51,16 @@ export const RECON_METADATA = {
     "source": "https://commons.wikimedia.org/wiki/File%3AAbel%20australopithecus.png"
   },
   "kenyanthropus": {
-    "title": "Kenyanthropus platyops, skull (model)",
-    "author": "ing. Pavel Švejnar",
+    "title": "Kenyanthropus platyops museum exhibit (Nairobi National Museum)",
+    "author": "Mike Peel",
     "license": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AKenyanthropus%20platyops%2C%20skull%20(model).JPG"
-  },
-  "deyiremeda": {
-    "title": "Burtele foot",
-    "author": "John Nygren",
-    "license": "CC BY 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3ABurtele%20foot.png"
+    "source": "https://commons.wikimedia.org/wiki/File:At_Nairobi_National_Museum_2025_083.jpg"
   },
   "africanus": {
-    "title": "Taung child - Facial forensic reconstruction",
-    "author": "Cicero Moraes",
+    "title": "Australopithecus africanus adult facial reconstruction (Museo della preistoria Luigi Donini)",
+    "author": "Elena Tartaglione",
     "license": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3ATaung%20child%20-%20Facial%20forensic%20reconstruction.png"
+    "source": "https://commons.wikimedia.org/wiki/File:Museo_della_preistoria_di_San_Lazzaro_02.jpg"
   },
   "sediba": {
     "title": "Australopithecus sediba (Fundort Malapa)",
@@ -81,16 +69,16 @@ export const RECON_METADATA = {
     "source": "https://commons.wikimedia.org/wiki/File%3AAustralopithecus%20sediba%20(Fundort%20Malapa).jpg"
   },
   "garhi": {
-    "title": "Australopithecus garhi- white background",
-    "author": "宜蘭第一公民",
-    "license": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AAustralopithecus%20garhi-%20white%20background.jpg"
+    "title": "Australopithecus garhi fossils (National Museum of Ethiopia)",
+    "author": "Sailko",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Resti_di_australopithecus_garhi,_da_bouri_in_afar,_2,5_milioni_di_anni_fa.jpg"
   },
   "aethiopicus": {
-    "title": "Paranthropus aethiopicus face (University of Zurich)",
-    "author": "Guérin Nicolas (messages)",
+    "title": "Paranthropus aethiopicus model (Natural History Museum, London)",
+    "author": "Nrkpan",
     "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AParanthropus%20aethiopicus%20face%20(University%20of%20Zurich).JPG"
+    "source": "https://commons.wikimedia.org/wiki/File:Paranthropus_aethiopicus.JPG"
   },
   "boisei": {
     "title": "Paranthropus boisei - forensic facial reconstruction",
@@ -105,10 +93,10 @@ export const RECON_METADATA = {
     "source": "https://commons.wikimedia.org/wiki/File%3AParanthropus%20robustus%20female.jpg"
   },
   "capensis": {
-    "title": "Australopithecus, scull, Anthropos Pavilon, Brno, 187933",
-    "author": "Zde",
+    "title": "Paranthropus facial reconstruction (Museo della preistoria Luigi Donini)",
+    "author": "Elena Tartaglione",
     "license": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AAustralopithecus%2C%20scull%2C%20Anthropos%20Pavilon%2C%20Brno%2C%20187933.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Museo_della_preistoria_di_San_Lazzaro_02.jpg"
   },
   "habilis": {
     "title": "Homo habilis - forensic facial reconstruction",
@@ -135,10 +123,10 @@ export const RECON_METADATA = {
     "source": "https://commons.wikimedia.org/wiki/File%3AHomo%20erectus%20pekinensis%2C%20forensic%20facial%20reconstruction.png"
   },
   "antecessor": {
-    "title": "Homo antecessor reconstruccion",
-    "author": "Xvazquez",
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File%3AHomo%20antecessor%20reconstruccion.jpg"
+    "title": "Homo antecessor child facial reconstruction model (Natural History Museum, London)",
+    "author": "Emőke Dénes",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Em_-_Homo_antecessor_child_model_-_2_(cropped).jpg"
   },
   "heidelbergensis": {
     "title": "Homo heidelbergensis - forensic facial reconstruction",
@@ -147,10 +135,10 @@ export const RECON_METADATA = {
     "source": "https://commons.wikimedia.org/wiki/File%3AHomo%20heidelbergensis%20-%20forensic%20facial%20reconstruction.png"
   },
   "rhodesiensis": {
-    "title": "Homo rhodesiensis Broken Hill 1 IMG 5654 BMNH",
-    "author": "Bjoertvedt",
+    "title": "Homo rhodesiensis forensic facial reconstruction bust",
+    "author": "Andrey Laskov (LxAndrew)",
     "license": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AHomo%20rhodesiensis%20Broken%20Hill%201%20IMG%205654%20BMNH.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D1%8F%D1%80%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D1%80%D0%B0%D0%B5%D0%B2%D0%B5%D0%B4%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D1%83%D0%B7%D0%B5%D0%B9_(02).JPG"
   },
   "neanderthalensis": {
     "title": "Neanderthal man reconstruction, Natural History Museum, London",
@@ -159,10 +147,10 @@ export const RECON_METADATA = {
     "source": "https://commons.wikimedia.org/wiki/File%3ANeanderthal%20man%20reconstruction%2C%20Natural%20History%20Museum%2C%20London.jpg"
   },
   "nesherramla": {
-    "title": "Nesher Ramla Homo fossils- reconstruction of their location in the head",
-    "author": "ד\"ר יוסי זיידנר  -  Yossi Zaidner",
+    "title": "Nesher Ramla Homo 3D virtual skull reconstruction",
+    "author": "Dr. Yossi Zaidner",
     "license": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3ANesher%20Ramla%20Homo%20fossils-%20reconstruction%20of%20their%20location%20in%20the%20head.png"
+    "source": "https://commons.wikimedia.org/wiki/File:Video_showing_the_reconstructed_location_of_Nesher_Ramla_1_on_a_skull.webm"
   },
   "longi": {
     "title": "Homo longi - forensic facial approximation",
@@ -171,10 +159,10 @@ export const RECON_METADATA = {
     "source": "https://commons.wikimedia.org/wiki/File%3AHomo%20longi%20-%20forensic%20facial%20approximation.jpg"
   },
   "naledi": {
-    "title": "Homo Naledi - Facial reconstruction",
-    "author": "Smigel",
-    "license": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AHomo%20Naledi%20-%20Facial%20reconstruction.jpg"
+    "title": "Homo naledi forensic facial reconstruction",
+    "author": "Cicero Moraes (Arc-Team) et al.",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Homo_naledi_facial_reconstruction.jpg"
   },
   "floresiensis": {
     "title": "Homo floresiensis - facial approximation - color 2",

@@ -22,9 +22,9 @@ export const SKULL_METADATA = {
   },
   kadabba: {
     specimen: "AME-VP-1/1 mandible & teeth",
-    author: "Chartep",
+    author: "it:User:Lucius",
     license: "CC BY-SA 3.0",
-    source: "https://commons.wikimedia.org/wiki/File:Ardipithecus_kadabba_specimens.jpg",
+    source: "https://commons.wikimedia.org/wiki/File:Ardipithecus_kadabba_fossils.jpg",
   },
   ramidus: {
     specimen: "ARA-VP-6/500 (Ardi)",
@@ -45,10 +45,10 @@ export const SKULL_METADATA = {
     source: "https://commons.wikimedia.org/wiki/File:Australopithecus_afarensis-MGL_95215-P5030041-black.jpg",
   },
   prometheus: {
-    specimen: "StW 573 (Little Foot)",
-    author: "Tobias Fluegel",
-    license: "CC BY-SA 3.0",
-    source: "https://commons.wikimedia.org/wiki/File:Little_Foot_01.jpg",
+    specimen: "StW 573 (Little Foot) cranium",
+    author: "Wits University",
+    license: "CC BY 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Litte_Foot,_Skull.JPG",
   },
   bahrelghazali: {
     specimen: "KT 12/H1 (Abel) mandible",
@@ -69,10 +69,10 @@ export const SKULL_METADATA = {
     source: "https://commons.wikimedia.org/wiki/File:Australopithecus_deyiremeda.png",
   },
   africanus: {
-    specimen: "Sts 5 (Mrs. Ples) cast",
-    author: "Rept0n1x",
-    license: "CC BY-SA 3.0",
-    source: "https://commons.wikimedia.org/wiki/File:Australopithecus_africanus_skull_cast,_World_Museum_Liverpool.JPG",
+    specimen: "Sts 5 (Mrs. Ples) original cranium",
+    author: "Ditsong Museum of Natural History",
+    license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Mrs_Ples_Face.jpg",
   },
   sediba: {
     specimen: "MH1 (Karabo) cranium",
@@ -147,10 +147,10 @@ export const SKULL_METADATA = {
     source: "https://commons.wikimedia.org/wiki/File:Homo_heidelbergensis-Cranium_-5.jpg",
   },
   rhodesiensis: {
-    specimen: "Kabwe 1 (Broken Hill) cast",
-    author: "Gunnar Creutz",
+    specimen: "Kabwe 1 (Broken Hill) cranium",
+    author: "Emőke Dénes",
     license: "CC BY-SA 4.0",
-    source: "https://commons.wikimedia.org/wiki/File:Homo_heidelbergensis_(Kabwe_1_cast)_at_G%C3%B6teborgs_Naturhistoriska_Museum_8556.jpg",
+    source: "https://commons.wikimedia.org/wiki/File:Em_-_African_Homo_heidelbergensis_-_1.jpg",
   },
   neanderthalensis: {
     specimen: "AMNH Specimen",
@@ -159,7 +159,7 @@ export const SKULL_METADATA = {
     source: "https://commons.wikimedia.org/wiki/File:Neanderthal_at_AMNH.jpg",
   },
   nesherramla: {
-    specimen: "Nesher Ramla fossils",
+    specimen: "Nesher Ramla fossils (parietal fragment & mandible)",
     author: "Dr. Yossi Zaidner",
     license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:Nesher_Ramla_Homo_fossils-_a_skull_fragment_and_a_lower_jaw.jpg",
@@ -183,10 +183,10 @@ export const SKULL_METADATA = {
     source: "https://commons.wikimedia.org/wiki/File:Homo_Florensiensis-MGL_95216-P4150647-black.jpg",
   },
   luzonensis: {
-    specimen: "CCH6 teeth & bones",
-    author: "Homo schollensis",
+    specimen: "CCH6 holotype molars",
+    author: "Callao Cave Archaeology Project / User:Luzonensis",
     license: "CC BY-SA 4.0",
-    source: "https://commons.wikimedia.org/wiki/File:Homo_luzonensis_teeth_and_foot_bones_diagram.jpg",
+    source: "https://commons.wikimedia.org/wiki/File:LuzonensisMolars.jpg",
   },
   sapiens: {
     specimen: "Cro-Magnon 1 cranium",
