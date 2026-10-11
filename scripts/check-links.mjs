@@ -20,6 +20,15 @@ async function check(url) {
         if (method === "GET") return { url, status: "blocked", code: res.status };
         continue;
       }
+      if (res.status === 406 && method === "GET") {
+        try {
+          const fb = await fetch(url, { redirect: "follow", signal: AbortSignal.timeout(20000) });
+          if (fb.ok) return { url, status: "ok", code: fb.status };
+          return { url, status: "blocked", code: fb.status };
+        } catch {
+          return { url, status: "blocked", code: 406 };
+        }
+      }
       if (method === "GET" || res.status === 404 || res.status === 410) return { url, status: "broken", code: res.status };
     } catch (e) {
       if (method === "GET") return { url, status: "broken", code: String(e.cause?.code || e.name) };
