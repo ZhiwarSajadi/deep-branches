@@ -203,7 +203,7 @@ export function App() {
           <em>of a much larger tree.</em>
         </h1>
         <p>
-          Thirty-one fossil relatives across eight million years, each with its sources. Drag to orbit · tap a
+          Thirty-one fossil relatives across more than seven million years, each with its sources. Drag to orbit · tap a
           species · double-click to step inside · space to play.
         </p>
       </header>

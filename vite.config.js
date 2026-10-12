@@ -48,7 +48,11 @@ function htmlPlugin() {
           .sort((a, b) => b.start - a.start)
           .map(
             (s) =>
-              `<li><strong><i>${esc(s.genus)} ${esc(s.sp)}</i></strong> (${esc(CLADES[s.clade].label)}, ${esc(fmt(s))}, ${esc(s.place)}): ${esc(s.note)}</li>`,
+              `<li><strong><i>${esc(s.genus)} ${esc(s.sp)}</i></strong> (${esc(CLADES[s.clade].label)}, ${esc(fmt(s))}, ${esc(s.place)}): ${esc(s.note)}` +
+              (s.src && s.src.length > 0
+                ? ` [Sources: ${s.src.map(([label, href]) => `<a href="${esc(href)}">${esc(label)}</a>`).join(", ")}]`
+                : "") +
+              `</li>`,
           )
           .join("") +
         "</ol>";

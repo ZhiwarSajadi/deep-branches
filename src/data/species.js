@@ -159,7 +159,7 @@ export const SPECIES = [
     z: 0.8,
     parent: "anamensis",
     dashed: true,
-    note: "Shared the landscape with Lucy’s species. In 2025 the grasping Burtele foot was assigned to it: a tree‑climber living beside Lucy.",
+    note: "Shared the landscape with Lucy’s species. In 2025 the Burtele foot, which has a grasping big toe, was assigned to it; researchers read the toe as evidence of tree climbing.",
     place: "Woranso‑Mille, Ethiopia",
   },
   {
@@ -188,7 +188,7 @@ export const SPECIES = [
     x: 0.4,
     z: 0.88,
     parent: "afarensis",
-    note: "The Taung Child (found 1924, named 1925): the first australopith ever named. Its South African caves are dated 2.6–2.0 Ma by older methods, but ~3.4–3.6 Ma by 2022 cosmogenic dating.",
+    note: "The Taung Child (found 1924, named 1925): the first australopith ever named. Fossils from Sterkfontein Member 4 were dated in 2022, by cosmogenic nuclide methods, to about 3.4–3.6 Ma (older estimates were 2–3 Ma); that study concerned Sterkfontein, not the Taung site.",
     place: "South Africa",
   },
   {
@@ -277,7 +277,7 @@ export const SPECIES = [
     z: -1.15,
     parent: "robustus",
     dashed: true,
-    note: "Proposed 2025: the SK 15 jaw (~1.4 Ma, the only known specimen) reclassified as a small, gracile Paranthropus. Contested in 2026, with other classifications suggested.",
+    note: "Proposed in 2025, when the SK 15 jaw (~1.4 Ma, the only specimen attributed so far) was tentatively assigned to a small, gracile Paranthropus. A 2026 rebuttal (Clarke & Pickering) contested this classification.",
     place: "Swartkrans, South Africa",
   },
   {
@@ -353,7 +353,7 @@ export const SPECIES = [
     z: 0.48,
     parent: "erectus",
     dashed: true,
-    note: "Long seen as the last shared ancestor of us and Neanderthals, and drawn that way here. But 2025 analyses date the splits between the sapiens, Neanderthal and Denisovan lineages to over 1 Ma, well before this species.",
+    note: "Long seen as the last shared ancestor of us and Neanderthals, and drawn that way here. But a 2025 reconstruction of the ~1 Ma Yunxian 2 skull (Feng et al., Science) estimated the Neanderthal, Denisovan and sapiens lineage splits at >1.3 Ma, well before this species.",
     place: "Africa & Europe",
   },
   {
@@ -367,7 +367,7 @@ export const SPECIES = [
     z: -0.96,
     parent: "erectus",
     dashed: true,
-    note: "Among the earliest humans in Western Europe, from Atapuerca. Enamel proteins (2020) place it as a close sister lineage to the later Homo of Neanderthals, Denisovans and us.",
+    note: "Among the earliest humans in Western Europe, from Atapuerca. Enamel proteins (2020) place it as a close sister lineage to later Homo. A 2025 study assigned the ~1.1–1.4 Ma 'Pink' face from nearby Sima del Elefante TE7 provisionally to Homo affinis erectus instead.",
     place: "Atapuerca, Spain",
   },
   {
@@ -382,7 +382,7 @@ export const SPECIES = [
     z: -0.08,
     parent: "erectus",
     dashed: true,
-    note: "African Middle Pleistocene humans (Kabwe ‘Broken Hill’ skull, 1921). The 2021 replacement name H. bodoensis is disputed: critics say it is a junior synonym of H. rhodesiensis under ICZN priority rules, while its authors disagree.",
+    note: "African Middle Pleistocene humans (Kabwe ‘Broken Hill’ skull, 1921). The 2022 replacement name H. bodoensis is disputed: critics say it is a junior synonym of H. rhodesiensis under ICZN priority rules, while its authors disagree.",
     place: "Kabwe, Zambia & Bodo, Ethiopia",
   },
   {
@@ -427,7 +427,7 @@ export const SPECIES = [
     z: 0.5,
     parent: "heidelbergensis",
     dashed: true,
-    note: "The Denisovans: in 2025 ancient proteins and DNA linked the Harbin ‘Dragon Man’ skull to them, so H. longi has been proposed as their species name (some researchers prefer the informal ‘Denisovans’). Proteins also tie the Penghu jaw from Taiwan to them. The ~1 Ma Yunxian skull belongs to the same clade; a rival name, H. juluensis (2024), is not widely used.",
+    note: "The Denisovans: in 2025 ancient proteins and DNA linked the Harbin ‘Dragon Man’ skull to them, so H. longi has been proposed as their species name (some researchers prefer the informal ‘Denisovans’). Proteins were also used to link the Penghu jaw from Taiwan, though a 2025 critique notes the variants could reflect early H. sapiens with Denisovan ancestry. The ~1 Ma Yunxian 2 skull was placed in the same lineage in a 2025 study without a species assignment; a rival name, H. juluensis (2024), is not widely used.",
     place: "Siberia, Tibet & East Asia",
   },
   {

@@ -2,7 +2,7 @@
 ### Hominin Tree 3D: the human family tree
 
 A free, **non-commercial, educational** interactive 3D timeline of the human family tree. Explore 31 fossil hominin
-species (some still debated) across eight million years, step inside any species' time bar in first-person view, and follow the
+species (some still debated) across more than seven million years, step inside any species' time bar in first-person view, and follow the
 sources (peer-reviewed papers and museum pages) linked on every species card.
 
 > **Accuracy note.** The species summaries were drafted with the help of an AI assistant (Claude, by Anthropic)

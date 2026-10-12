@@ -15,13 +15,13 @@ export const SITE = {
   },
   get description() {
     return (
-      `Thirty-one fossil relatives across eight million years, each with its sources. ` +
+      `Thirty-one fossil relatives across more than seven million years, each with its sources. ` +
       `An interactive 3D timeline of the human family tree. Free, non-commercial and educational.`
     );
   },
 
   version: "1.0.0",
-  lastUpdated: "2026-10-10",
+  lastUpdated: "2026-10-12",
 
   // ---- Fill these in before launch. Empty values are simply hidden. ----
   siteUrl: "https://zhiwarsajadi.github.io/deep-branches/",
