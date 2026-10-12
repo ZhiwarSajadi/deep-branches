@@ -104,9 +104,14 @@ export function App() {
       (v) => timeMa <= v.start && timeMa >= v.end && v.id !== "pan" && (!ancestorsOnly || ANC_CHAIN.has(v.id)),
     ).length,
     toggleClade = (v) =>
-      setHiddenClades((y) => {
-        let C = new Set(y);
-        return (C.has(v) ? C.delete(v) : C.add(v), C);
+      setHiddenClades((prev) => {
+        const next = new Set(prev);
+        if (next.has(v)) {
+          next.delete(v);
+        } else {
+          next.add(v);
+        }
+        return next;
       }),
     toggleAnc = () => {
       if (!ancestorsOnly && selectedId && !ANC_CHAIN.has(selectedId)) setSelectedId(null);
@@ -131,8 +136,11 @@ export function App() {
       setSelectedId(id);
       setFp(id);
       setPlaying(false);
-      let need = [id, ...fpKids(id)].filter((x) => x !== "root").map((x) => SPECIES_BY_ID[x].end);
-      need.length && setTimeMa((x) => Math.max(0, Math.min(x, ...need)));
+      let need = [id, ...fpKids(id)]
+        .filter((x) => x !== "root")
+        .map((x) => SPECIES_BY_ID[x]?.end)
+        .filter((e) => typeof e === "number");
+      if (need.length) setTimeMa((x) => Math.max(0, Math.min(x, ...need)));
     },
     go = (id) => (fp ? enterFp(id) : selectAndGrow(id)),
     chrono = [ROOT_NODE, ...SPECIES.slice().sort((v1, v2) => v2.start - v1.start)].filter(
@@ -684,8 +692,9 @@ export function App() {
               step={0.01}
               value={8 - timeMa}
               aria-label="Time"
-              onChange={(v) => {
-                (setPlaying(false), setTimeMa(8 - Number(v.target.value)));
+              onChange={(e) => {
+                setPlaying(false);
+                setTimeMa(8 - Number(e.target.value));
               }}
               style={{
                 "--p": `${((8 - timeMa) / 8) * 100}%`,

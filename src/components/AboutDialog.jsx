@@ -37,6 +37,9 @@ export function AboutDialog({ open, onClose }) {
             <kbd>Space</kbd> play / pause the timeline
           </li>
           <li>
+            <kbd>L</kbd> toggle species labels on/off
+          </li>
+          <li>
             <kbd>Esc</kbd> close a card or leave first-person view
           </li>
           <li>Drag to orbit, scroll or pinch to zoom, double-click a species for first-person view</li>

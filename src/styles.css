@@ -421,6 +421,7 @@ body {
 }
 .card.minimized .card-top {
   margin-bottom: 0;
+  cursor: pointer;
 }
 .card .card-min-name {
   font: 600 13px/1.2 Playfair Display, Georgia, serif;
