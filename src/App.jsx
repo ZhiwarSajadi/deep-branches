@@ -36,7 +36,20 @@ export function App() {
     const tick = (now) => {
       const dt = Math.min(now - lastTime, 100);
       lastTime = now;
-      setTimeMa((prev) => Math.max(0, prev - (8 * dt) / PLAY_DURATION_MS));
+      let atEnd = false;
+      setTimeMa((prev) => {
+        const next = prev - (8 * dt) / PLAY_DURATION_MS;
+        if (next <= 0) {
+          atEnd = true;
+          return 0;
+        }
+        return next;
+      });
+      if (atEnd) {
+        setPlaying(false);
+        setAutoRotate(false);
+        return;
+      }
       frameId = requestAnimationFrame(tick);
     };
     frameId = requestAnimationFrame(tick);
