@@ -68,12 +68,6 @@ export const RECON_METADATA = {
     "license": "CC BY-SA 4.0",
     "source": "https://commons.wikimedia.org/wiki/File%3AAustralopithecus%20sediba%20(Fundort%20Malapa).jpg"
   },
-  "garhi": {
-    "title": "Australopithecus garhi fossils (National Museum of Ethiopia)",
-    "author": "Sailko",
-    "license": "CC BY 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Resti_di_australopithecus_garhi,_da_bouri_in_afar,_2,5_milioni_di_anni_fa.jpg"
-  },
   "aethiopicus": {
     "title": "Paranthropus aethiopicus model (Natural History Museum, London)",
     "author": "Nrkpan",
@@ -181,12 +175,6 @@ export const RECON_METADATA = {
     "author": "Neanderthal-Museum, Mettmann",
     "license": "CC BY-SA 4.0",
     "source": "https://commons.wikimedia.org/wiki/File%3AHomo%20sapiens%20sapiens%20(Fundort%20Jebel%20Irhoud%20Marokko).jpg"
-  },
-  "pan": {
-    "title": "Chimp portrait (5312048385)",
-    "author": "Becker1999 from Grove City, OH",
-    "license": "CC BY 2.0",
-    "source": "https://commons.wikimedia.org/wiki/File%3AChimp%20portrait%20(5312048385).jpg"
   }
 };
 

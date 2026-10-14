@@ -23,7 +23,7 @@ if (SHOW_SKULL_ILLUSTRATIONS && !SITE.skullCredit) errors.push("Skull illustrati
 
 // Things that must not ship
 if (files.some((f) => f.endsWith(".map"))) errors.push("Source maps found in dist/.");
-if (!SHOW_SKULL_ILLUSTRATIONS && files.some((f) => /assets\/.*\.png$/.test(f))) errors.push("PNG images found in dist/assets while skull illustrations are off.");
+if (!SHOW_SKULL_ILLUSTRATIONS && files.some((f) => /assets\/.*\.(png|jpe?g|webp)$/i.test(f))) errors.push("Photos found in dist/assets while skull and reconstruction illustrations are off.");
 for (const [f, t] of text) {
   if (/fonts\.googleapis\.com|fonts\.gstatic\.com/.test(t)) errors.push(`${f}: still references Google Fonts.`);
   if (/clickup|artifact-input|__artifactSourceMap/i.test(t)) errors.push(`${f}: contains traces of the original artifact/ClickUp file.`);

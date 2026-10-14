@@ -2,6 +2,14 @@
 import fs from "node:fs";
 import path from "node:path";
 
+if (!process.argv.includes("--force")) {
+  console.error(
+    "Refusing to run. This script regenerates src/data/reconstructions.on.js from an older file mapping whose "
+      + "sources no longer match the committed, attributed data. Edit the data by hand, or re-run with --force."
+  );
+  process.exit(1);
+}
+
 const RECON_DIR = path.resolve("src/assets/reconstructions");
 if (!fs.existsSync(RECON_DIR)) fs.mkdirSync(RECON_DIR, { recursive: true });
 

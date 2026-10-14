@@ -37,11 +37,10 @@ export function CameraRig({ time, follow, cardOpen, autoRotate, fp }) {
     }).current,
     live = useRef({}).current;
   live.s = s;
-  live.n = time;
   useEffect(() => {
     if (st.active || st.ret) return;
     let d = s.width / s.height;
-    a.position.setLength(u ? 44 : Math.min(85, 12.6 / (Math.tan((19 * Math.PI) / 180) * d)));
+    a.position.setLength(u ? 44 : Math.min(95, 19 / (Math.tan((19 * Math.PI) / 180) * d)));
     return () => a.clearViewOffset();
   }, [s, a, u]);
   useEffect(() => {

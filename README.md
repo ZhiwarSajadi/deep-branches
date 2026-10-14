@@ -1,8 +1,8 @@
 # Deep Branches
 ### Hominin Tree 3D: the human family tree
 
-A free, **non-commercial, educational** interactive 3D timeline of the human family tree. Explore 31 fossil hominin
-species (some still debated) across more than seven million years, step inside any species' time bar in first-person view, and follow the
+A free, **non-commercial, educational** interactive 3D timeline of the human family tree. Explore 31 hominin lineages
+(29 named fossil species, one informal group and our own species; some still debated) across more than seven million years, step inside any species' time bar in first-person view, and follow the
 sources (peer-reviewed papers and museum pages) linked on every species card.
 
 > **Accuracy note.** The species summaries were drafted with the help of an AI assistant (Claude, by Anthropic)
@@ -59,7 +59,7 @@ scripts/              validate-data, check-links, check-release
 - Code: MIT (`LICENSE`).
 - Text and data: CC BY 4.0 (`LICENSE-CONTENT.md`).
 - Third-party libraries and fonts: generated into `THIRD_PARTY_LICENSES.txt` at build time.
-- Skull photographs and reconstructions: CC-licensed via Wikimedia Commons (see `src/data/skulls.on.js` and `src/data/reconstructions.on.js`).
+- Skull photographs and reconstructions: public-domain, CC0 or CC-licensed via Wikimedia Commons (see `src/data/skulls.on.js` and `src/data/reconstructions.on.js`).
 
 ## Known notes
 

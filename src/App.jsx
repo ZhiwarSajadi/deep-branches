@@ -6,9 +6,9 @@ import { CLADES, SPECIES, SPECIES_BY_ID } from "./data/species.js";
 import { Scene } from "./scene/Scene.jsx";
 import { FpHud } from "./components/FpHud.jsx";
 import { skullFor } from "@skulls";
-import { reconFor } from "./data/reconstructions.on.js";
+import { reconFor } from "@recons";
 import { pronunciationFor } from "./data/pronunciations.js";
-import { SITE } from "./site.js";
+import { SITE, HOMININ_COUNT } from "./site.js";
 import { PREFERS_REDUCED_MOTION } from "./lib/motion.js";
 import { AboutDialog } from "./components/AboutDialog.jsx";
 import { SpeciesList } from "./components/SpeciesList.jsx";
@@ -16,10 +16,10 @@ import { formatMa, formatRange } from "./lib/time.js";
 const PLAY_DURATION_MS = 16e3;
 export function App() {
   let [timeMa, setTimeMa] = useState(8), // Always start at 8 Ma so it plays automatically from the beginning
-    [playing, setPlaying] = useState(true), // Automatically play by default
+    [playing, setPlaying] = useState(!PREFERS_REDUCED_MOTION), // Play by default; reduced-motion visitors start paused
     [selectedId, setSelectedId] = useState(null),
     [hiddenClades, setHiddenClades] = useState(new Set()),
-    [autoRotate, setAutoRotate] = useState(true), // Automatically orbit by default
+    [autoRotate, setAutoRotate] = useState(!PREFERS_REDUCED_MOTION), // Orbit by default; reduced-motion visitors start still
     [aboutOpen, setAboutOpen] = useState(false),
     [fp, setFp] = useState(null),
     [ancestorsOnly, setAncestorsOnly] = useState(false),
@@ -203,7 +203,7 @@ export function App() {
           <em>of a much larger tree.</em>
         </h1>
         <p>
-          Thirty-one fossil relatives across more than seven million years, each with its sources. Drag to orbit · tap a
+          {HOMININ_COUNT} hominin lineages across more than seven million years, each with its sources. Drag to orbit · tap a
           species · double-click to step inside · space to play.
         </p>
       </header>
@@ -330,27 +330,23 @@ export function App() {
                 return (
                   <div className={`card-media-grid ${rc && sk ? "dual" : "single"}`}>
                     {rc && (
-                      <div
-                        className="card-media-card clickable"
-                        onClick={() => setExpandedMedia("recon")}
-                        title="Click to view enlarged reconstruction on the left"
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            setExpandedMedia("recon");
-                          }
-                        }}
-                      >
-                        <div className="media-img-wrap">
-                          <img
-                            src={rc.url}
-                            alt={`${selected.genus} ${selected.sp} life & facial reconstruction`}
-                            loading="lazy"
-                          />
-                          <span className="media-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
-                        </div>
+                      <div className="card-media-card clickable">
+                        <button
+                          type="button"
+                          className="media-img-btn"
+                          onClick={() => setExpandedMedia("recon")}
+                          aria-label={`Enlarge life reconstruction of ${selected.genus} ${selected.sp}`}
+                          title="Click to view the enlarged reconstruction"
+                        >
+                          <span className="media-img-wrap">
+                            <img
+                              src={rc.url}
+                              alt={`${selected.genus} ${selected.sp} life & facial reconstruction`}
+                              loading="lazy"
+                            />
+                            <span className="media-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+                          </span>
+                        </button>
                         <div className="media-meta">
                           <span className="media-kind">Reconstruction</span>
                           <a
@@ -358,7 +354,6 @@ export function App() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="media-link"
-                            onClick={(e) => e.stopPropagation()}
                             title={`${rc.title ? rc.title + " · " : ""}By ${rc.author} (${rc.license})`}
                           >
                             {rc.license} ↗
@@ -367,27 +362,23 @@ export function App() {
                       </div>
                     )}
                     {sk && (
-                      <div
-                        className="card-media-card clickable"
-                        onClick={() => setExpandedMedia("fossil")}
-                        title="Click to view enlarged fossil specimen on the left"
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            setExpandedMedia("fossil");
-                          }
-                        }}
-                      >
-                        <div className="media-img-wrap">
-                          <img
-                            src={typeof sk === "object" ? sk.url : sk}
-                            alt={`${selected.genus} ${selected.sp} fossil specimen`}
-                            loading="lazy"
-                          />
-                          <span className="media-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
-                        </div>
+                      <div className="card-media-card clickable">
+                        <button
+                          type="button"
+                          className="media-img-btn"
+                          onClick={() => setExpandedMedia("fossil")}
+                          aria-label={`Enlarge fossil specimen photo of ${selected.genus} ${selected.sp}`}
+                          title="Click to view the enlarged fossil specimen"
+                        >
+                          <span className="media-img-wrap">
+                            <img
+                              src={typeof sk === "object" ? sk.url : sk}
+                              alt={`${selected.genus} ${selected.sp} fossil specimen`}
+                              loading="lazy"
+                            />
+                            <span className="media-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+                          </span>
+                        </button>
                         <div className="media-meta">
                           <span className="media-kind">Fossil specimen</span>
                           {typeof sk === "object" && sk.author && (
@@ -396,7 +387,6 @@ export function App() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="media-link"
-                              onClick={(e) => e.stopPropagation()}
                               title={`${sk.specimen ? sk.specimen + " · " : ""}Photo: ${sk.author} (${sk.license})`}
                             >
                               {sk.license} ↗

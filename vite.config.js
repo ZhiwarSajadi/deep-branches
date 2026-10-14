@@ -16,6 +16,9 @@ const fallbackLicense = (name) => {
   }
 };
 
+const CSP =
+  "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'";
+
 const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -28,7 +31,10 @@ const fmt = (s) => {
 function htmlPlugin() {
   return {
     name: "deep-branches-html",
-    transformIndexHtml(html) {
+    transformIndexHtml(html, ctx) {
+      // GitHub Pages cannot send response headers, so the CSP is also written as a <meta> tag.
+      // Build only: the dev server needs inline scripts.
+      const csp = ctx?.server ? "" : `<meta http-equiv="Content-Security-Policy" content="${CSP}" />`;
       const url = SITE.siteUrl ? SITE.siteUrl.replace(/\/?$/, "/") : "";
       const urlTags = url
         ? [
@@ -71,12 +77,13 @@ function htmlPlugin() {
       }).replace(/</g, "\\u003c");
 
       return html
-        .replaceAll("__TITLE__", esc(SITE.title))
-        .replaceAll("__BRAND__", esc(SITE.brand))
-        .replaceAll("__DESCRIPTION__", esc(SITE.description))
-        .replace("__SEO_URL_TAGS__", urlTags)
-        .replace("__JSON_LD__", jsonLd)
-        .replace("__NOSCRIPT_LIST__", list);
+        .replaceAll("__TITLE__", () => esc(SITE.title))
+        .replaceAll("__BRAND__", () => esc(SITE.brand))
+        .replaceAll("__DESCRIPTION__", () => esc(SITE.description))
+        .replace("__SEO_URL_TAGS__", () => urlTags)
+        .replace("__JSON_LD__", () => jsonLd)
+        .replace("__NOSCRIPT_LIST__", () => list)
+        .replace("__CSP_META__", () => csp);
     },
   };
 }
@@ -84,7 +91,9 @@ function htmlPlugin() {
 export default defineConfig({
   resolve: {
     alias: {
-      // Swap the skull module at build time so the PNGs are not bundled at all when the flag is off.
+      "@recons": fileURLToPath(
+        new URL(SHOW_SKULL_ILLUSTRATIONS ? "./src/data/reconstructions.on.js" : "./src/data/reconstructions.off.js", import.meta.url),
+      ),
       "@skulls": fileURLToPath(
         new URL(SHOW_SKULL_ILLUSTRATIONS ? "./src/data/skulls.on.js" : "./src/data/skulls.off.js", import.meta.url),
       ),

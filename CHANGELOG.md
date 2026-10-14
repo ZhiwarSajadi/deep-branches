@@ -2,6 +2,17 @@
 
 Record every content correction and release here (the date is also shown in the About dialog via `SITE.lastUpdated`).
 
+## Unreleased
+
+Review fixes:
+
+- **Accessibility**: visitors who ask for reduced motion now start with the timeline paused and the camera still. The 1.0.0 notes claimed this, but it was not implemented. Species media cards no longer nest a link inside a button, and their links meet the 24 px target size.
+- **Images**: removed the *P. troglodytes* "life reconstruction" (a photograph of a living chimpanzee) and the *A. garhi* "reconstruction" (a photograph of a fossil skull cast). Bundled photographs were downscaled and re-encoded to cut download size; licences and credits are unchanged.
+- **Citations**: the *H. antecessor* "Pink" face now cites Huguet et al. 2025 (*Nature*). The *H. habilis* 2.8 Ma jaw cites Villmoare et al. 2015 instead of a news article. The Rendu et al. 2014 link now uses the DOI.
+- **Content**: "31 fossil relatives" is now "31 hominin lineages", because the count includes *H. sapiens* (living) and an informal group that is not a formally named species.
+- **Site**: the Content-Security-Policy is also written as a `<meta>` tag in builds, so it applies on GitHub Pages. Added `sitemap.xml`.
+- **Maintenance**: version 1.0.1 in `package.json`, the site config and `CITATION.cff`. The skull feature flag now controls reconstructions too. The release check detects JPEG images. The reconstruction download script refuses to run without `--force`, and the unused stub was removed. Build-time HTML substitution no longer misreads `$` characters.
+
 ## 1.0.1 — 2026-10-12
 
 Scientific review updates and data accuracy refinements based on literature audit:

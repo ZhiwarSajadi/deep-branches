@@ -1,4 +1,4 @@
-// Properly attributed CC0 and CC BY / CC BY-SA licensed specimen photographs from Wikimedia Commons.
+// Properly attributed public-domain, CC0, CC BY and CC BY-SA specimen photographs from Wikimedia Commons.
 // Bundled locally via Vite import.meta.glob for zero-network, high performance loading.
 
 const images = import.meta.glob("../assets/skulls/*.jpg", { eager: true, import: "default" });

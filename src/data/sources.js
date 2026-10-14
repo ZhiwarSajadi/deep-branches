@@ -108,10 +108,7 @@ export const SOURCES = {
     ],
     ["Leakey, Tobias & Napier 1964, Nature", "https://doi.org/10.1038/202007a0"],
     ["Braun et al. 2019, PNAS (2.6 Ma Oldowan tools)", "https://doi.org/10.1073/pnas.1820177116"],
-    [
-      "National Geographic: 2.8 Ma Ledi-Geraru jaw",
-      "https://www.nationalgeographic.com/science/article/150304-homo-habilis-evolution-fossil-jaw-ethiopia-olduvai-gorge",
-    ],
+    ["Villmoare et al. 2015, Science (Ledi-Geraru jaw)", "https://doi.org/10.1126/science.aaa1343"],
   ],
   rudolfensis: [
     [
@@ -135,6 +132,7 @@ export const SOURCES = {
   antecessor: [
     ["Bermúdez de Castro et al. 1997, Science", "https://doi.org/10.1126/science.276.5317.1392"],
     ["Welker et al. 2020, Nature (enamel proteome)", "https://doi.org/10.1038/s41586-020-2153-8"],
+    ["Huguet et al. 2025, Nature (ATE7-1 'Pink' face)", "https://doi.org/10.1038/s41586-025-08681-0"],
   ],
   heidelbergensis: [
     [
@@ -171,7 +169,7 @@ export const SOURCES = {
       "https://humanorigins.si.edu/evidence/human-fossils/species/homo-neanderthalensis",
     ],
     ["Green et al. 2010, Science (genome)", "https://doi.org/10.1126/science.1188021"],
-    ["Rendu et al. 2014, PNAS (La Chapelle-aux-Saints burial)", "https://anthropogeny.org/node/308990"],
+    ["Rendu et al. 2014, PNAS (La Chapelle-aux-Saints burial)", "https://doi.org/10.1073/pnas.1316780110"],
     ["Dibble et al. 2015, J. Archaeol. Sci. (critique)", "https://ro.uow.edu.au/smhpapers/2937"],
   ],
   longi: [

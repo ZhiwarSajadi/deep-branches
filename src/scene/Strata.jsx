@@ -47,7 +47,7 @@ export function Strata() {
               style={{
                 pointerEvents: "none",
               }}
-              position={[-11.3, maToY(t), 6.2]}
+              position={[t === 0 ? 11.3 : -11.3, maToY(t), 6.2]}
               center
               zIndexRange={[5, 0]}
             >

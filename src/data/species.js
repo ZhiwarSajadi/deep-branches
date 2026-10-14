@@ -367,7 +367,7 @@ export const SPECIES = [
     z: -0.96,
     parent: "erectus",
     dashed: true,
-    note: "Among the earliest humans in Western Europe, from Atapuerca. Enamel proteins (2020) place it as a close sister lineage to later Homo. A 2025 study assigned the ~1.1–1.4 Ma 'Pink' face from nearby Sima del Elefante TE7 provisionally to Homo affinis erectus instead.",
+    note: "Among the earliest humans in Western Europe, from Atapuerca. Enamel proteins (2020) place it as a close sister lineage to later Homo. A 2025 study assigned the ~1.1–1.4 Ma 'Pink' face from nearby Sima del Elefante TE7 provisionally to Homo aff. erectus instead (Huguet et al. 2025, Nature).",
     place: "Atapuerca, Spain",
   },
   {
@@ -427,7 +427,7 @@ export const SPECIES = [
     z: 0.5,
     parent: "heidelbergensis",
     dashed: true,
-    note: "The Denisovans: in 2025 ancient proteins and DNA linked the Harbin ‘Dragon Man’ skull to them, so H. longi has been proposed as their species name (some researchers prefer the informal ‘Denisovans’). Proteins were also used to link the Penghu jaw from Taiwan, though a 2025 critique notes the variants could reflect early H. sapiens with Denisovan ancestry. The ~1 Ma Yunxian 2 skull was placed in the same lineage in a 2025 study without a species assignment; a rival name, H. juluensis (2024), is not widely used.",
+    note: "The Denisovans: in 2025 ancient proteins and DNA linked the Harbin ‘Dragon Man’ skull to them, so H. longi has been proposed as their species name (some researchers prefer the informal ‘Denisovans’). Proteins were also used to link the Penghu jaw from Taiwan (Tsutaya et al. 2025, Science). The ~1 Ma Yunxian 2 skull was placed in the same lineage in a 2025 study without a species assignment; a rival name, H. juluensis (2024), is not widely used.",
     place: "Siberia, Tibet & East Asia",
   },
   {
