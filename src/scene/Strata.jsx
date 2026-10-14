@@ -7,7 +7,7 @@ export function Strata() {
       {["#b9ab9c", "#a99886", "#c4b6a4", "#9f8f80", "#bfae99", "#ae9d8d", "#c8bcae", "#b3a493"].map(
         (e, t) => (
           <mesh position={[0, (maToY(t) + maToY(t + 1)) / 2, 0.2]} key={t}>
-            <boxGeometry args={[22, maToY(t) - maToY(t + 1), 12]} />
+            <boxGeometry args={[30, maToY(t) - maToY(t + 1), 16]} />
             <meshStandardMaterial
               color={e}
               transparent
@@ -19,7 +19,7 @@ export function Strata() {
         ),
       )}
       <mesh position={[0, 0, 0.2]}>
-        <boxGeometry args={[22, 16.2, 12]} />
+        <boxGeometry args={[30, 21, 16]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
         <Edges color="#6f6158" />
       </mesh>
@@ -31,11 +31,11 @@ export function Strata() {
           <group key={t}>
             <Line
               points={[
-                [-11, maToY(t), 6.2],
-                [11, maToY(t), 6.2],
-                [11, maToY(t), -5.8],
-                [-11, maToY(t), -5.8],
-                [-11, maToY(t), 6.2],
+                [-15, maToY(t), 8.2],
+                [15, maToY(t), 8.2],
+                [15, maToY(t), -7.8],
+                [-15, maToY(t), -7.8],
+                [-15, maToY(t), 8.2],
               ]}
               color="#6f6158"
               lineWidth={0.6}
@@ -47,7 +47,7 @@ export function Strata() {
               style={{
                 pointerEvents: "none",
               }}
-              position={[t === 0 ? 11.3 : -11.3, maToY(t), 6.2]}
+              position={[t === 0 ? 15.3 : -15.3, maToY(t), 8.2]}
               center
               zIndexRange={[5, 0]}
             >

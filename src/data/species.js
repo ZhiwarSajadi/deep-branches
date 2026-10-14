@@ -63,7 +63,8 @@ export const SPECIES = [
   },
   {
     id: "kadabba",
-    labelAt: 5.38,
+    side: "l",
+    labelAt: 5.4,
     genus: "Ardipithecus",
     sp: "kadabba",
     clade: "basal",
@@ -105,7 +106,7 @@ export const SPECIES = [
   {
     id: "afarensis",
     side: "l",
-    labelAt: 3.05,
+    labelAt: 3.2,
     genus: "Australopithecus",
     sp: "afarensis",
     clade: "austr",
@@ -119,7 +120,7 @@ export const SPECIES = [
   },
   {
     id: "kenyanthropus",
-    labelAt: 3.33,
+    labelAt: 3.4,
     genus: "Kenyanthropus",
     sp: "platyops",
     clade: "austr",
@@ -150,6 +151,7 @@ export const SPECIES = [
   },
   {
     id: "deyiremeda",
+    labelAt: 3.35,
     genus: "Australopithecus",
     sp: "deyiremeda",
     clade: "austr",
@@ -164,7 +166,7 @@ export const SPECIES = [
   },
   {
     id: "prometheus",
-    labelAt: 3.62,
+    labelAt: 3.65,
     genus: "Australopithecus",
     sp: "prometheus",
     clade: "austr",
@@ -179,7 +181,7 @@ export const SPECIES = [
   },
   {
     id: "africanus",
-    labelAt: 2.5,
+    labelAt: 2.6,
     genus: "Australopithecus",
     sp: "africanus",
     clade: "austr",
@@ -208,7 +210,7 @@ export const SPECIES = [
   },
   {
     id: "garhi",
-    side: "l",
+    labelAt: 2.5,
     genus: "Australopithecus",
     sp: "garhi",
     clade: "austr",
@@ -223,7 +225,6 @@ export const SPECIES = [
   },
   {
     id: "aethiopicus",
-    side: "l",
     genus: "Paranthropus",
     sp: "aethiopicus",
     clade: "paran",
@@ -268,6 +269,7 @@ export const SPECIES = [
   },
   {
     id: "capensis",
+    labelAt: 1.35,
     genus: "Paranthropus",
     sp: "capensis",
     clade: "paran",
@@ -313,6 +315,7 @@ export const SPECIES = [
   },
   {
     id: "ergaster",
+    labelAt: 1.55,
     genus: "Homo",
     sp: "ergaster",
     clade: "homo",
@@ -327,8 +330,7 @@ export const SPECIES = [
   },
   {
     id: "erectus",
-    side: "l",
-    labelAt: 1.452,
+    labelAt: 0.95,
     genus: "Homo",
     sp: "erectus",
     clade: "homo",
@@ -343,7 +345,7 @@ export const SPECIES = [
   {
     id: "heidelbergensis",
     side: "l",
-    labelAt: 0.45,
+    labelAt: 0.55,
     genus: "Homo",
     sp: "heidelbergensis",
     clade: "homo",
@@ -358,6 +360,8 @@ export const SPECIES = [
   },
   {
     id: "antecessor",
+    side: "l",
+    labelAt: 1.15,
     genus: "Homo",
     sp: "antecessor",
     clade: "homo",
@@ -372,7 +376,7 @@ export const SPECIES = [
   },
   {
     id: "rhodesiensis",
-    labelAt: 0.45,
+    labelAt: 0.35,
     genus: "Homo",
     sp: "rhodesiensis",
     clade: "homo",
@@ -387,7 +391,7 @@ export const SPECIES = [
   },
   {
     id: "neanderthalensis",
-    labelAt: 0.2,
+    labelAt: 0.22,
     genus: "Homo",
     sp: "neanderthalensis",
     clade: "homo",
@@ -402,6 +406,7 @@ export const SPECIES = [
   },
   {
     id: "nesherramla",
+    side: "l",
     labelAt: 0.13,
     genus: "Homo",
     sp: "sp. (Nesher Ramla)",
@@ -417,7 +422,7 @@ export const SPECIES = [
   },
   {
     id: "longi",
-    labelAt: 0.17,
+    labelAt: 0.08,
     genus: "Homo",
     sp: "longi",
     clade: "homo",
@@ -433,7 +438,7 @@ export const SPECIES = [
   {
     id: "naledi",
     side: "l",
-    labelAt: 0.33,
+    labelAt: 0.28,
     genus: "Homo",
     sp: "naledi",
     clade: "homo",
@@ -449,6 +454,7 @@ export const SPECIES = [
   {
     id: "floresiensis",
     side: "l",
+    labelAt: 0.08,
     genus: "Homo",
     sp: "floresiensis",
     clade: "homo",
@@ -463,6 +469,8 @@ export const SPECIES = [
   },
   {
     id: "luzonensis",
+    side: "l",
+    labelAt: 0.06,
     genus: "Homo",
     sp: "luzonensis",
     clade: "homo",
@@ -495,12 +503,12 @@ export const SPECIES = [
   ...n,
   pri: n.id === "pan" ? 50 : e,
   src: SOURCES[n.id] || [],
-  x: n.x * 1.5,
-  z: n.z * 2,
+  x: n.x * 2.1,
+  z: n.z * 3,
 }));
 export const ROOT_POS = {
-  x: -8.4,
-  z: -2,
+  x: -11.76,
+  z: -3,
   start: 7.5,
 };
 export const SPECIES_BY_ID = Object.fromEntries(SPECIES.map((n) => [n.id, n]));
