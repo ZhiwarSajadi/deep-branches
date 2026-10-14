@@ -16,7 +16,7 @@ export function NowPlane({ time }) {
   return (
     <group position={[0, maToY(time) + 0.012, 0.2]} renderOrder={10}>
         <mesh ref={glowRef} renderOrder={10} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[22, 12]} />
+          <planeGeometry args={[30, 16]} />
           <meshBasicMaterial
             color="#fff4e2"
             transparent
@@ -30,11 +30,11 @@ export function NowPlane({ time }) {
         </mesh>
         <Line
           points={[
-            [-11, 0, -6],
-            [11, 0, -6],
-            [11, 0, 6],
-            [-11, 0, 6],
-            [-11, 0, -6],
+            [-15, 0, -8],
+            [15, 0, -8],
+            [15, 0, 8],
+            [-15, 0, 8],
+            [-15, 0, -8],
           ]}
           color="#fffaf2"
           lineWidth={2}

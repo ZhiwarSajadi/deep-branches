@@ -1049,8 +1049,8 @@ body {
   }
 }
 .tag {
-  font-size: 13.5px;
-  padding: 3px 9px;
+  font-size: 12px;
+  padding: 2px 7px;
 }
 .readout strong,
 .readout span {
@@ -1963,6 +1963,10 @@ body:has(.fallback) {
 
 /* Small mobile screens (phones <= 600px) */
 @media (max-width: 600px) {
+  .tag {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
   .head p {
     display: none;
   }
