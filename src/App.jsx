@@ -9,17 +9,16 @@ import { skullFor } from "@skulls";
 import { reconFor } from "@recons";
 import { pronunciationFor } from "./data/pronunciations.js";
 import { SITE, HOMININ_COUNT } from "./site.js";
-import { PREFERS_REDUCED_MOTION } from "./lib/motion.js";
 import { AboutDialog } from "./components/AboutDialog.jsx";
 import { SpeciesList } from "./components/SpeciesList.jsx";
 import { formatMa, formatRange } from "./lib/time.js";
 const PLAY_DURATION_MS = 16e3;
 export function App() {
   let [timeMa, setTimeMa] = useState(8), // Always start at 8 Ma so it plays automatically from the beginning
-    [playing, setPlaying] = useState(!PREFERS_REDUCED_MOTION), // Play by default; reduced-motion visitors start paused
+    [playing, setPlaying] = useState(true), // Automatically play by default upon website opening or refresh
     [selectedId, setSelectedId] = useState(null),
     [hiddenClades, setHiddenClades] = useState(new Set()),
-    [autoRotate, setAutoRotate] = useState(!PREFERS_REDUCED_MOTION), // Orbit by default; reduced-motion visitors start still
+    [autoRotate, setAutoRotate] = useState(true), // Automatically orbit by default upon website opening or refresh
     [aboutOpen, setAboutOpen] = useState(false),
     [fp, setFp] = useState(null),
     [ancestorsOnly, setAncestorsOnly] = useState(false),

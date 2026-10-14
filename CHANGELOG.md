@@ -6,7 +6,7 @@ Record every content correction and release here (the date is also shown in the 
 
 Review fixes:
 
-- **Accessibility**: visitors who ask for reduced motion now start with the timeline paused and the camera still. The 1.0.0 notes claimed this, but it was not implemented. Species media cards no longer nest a link inside a button, and their links meet the 24 px target size.
+- **Accessibility & Controls**: species media cards no longer nest a link inside a button, and their links meet the 24 px target size. Autoplay and 3D rotation start on load/refresh and cleanly pause when the timeline reaches the present.
 - **Images**: removed the *P. troglodytes* "life reconstruction" (a photograph of a living chimpanzee) and the *A. garhi* "reconstruction" (a photograph of a fossil skull cast). Bundled photographs were downscaled and re-encoded to cut download size; licences and credits are unchanged.
 - **Citations**: the *H. antecessor* "Pink" face now cites Huguet et al. 2025 (*Nature*). The *H. habilis* 2.8 Ma jaw cites Villmoare et al. 2015 instead of a news article. The Rendu et al. 2014 link now uses the DOI.
 - **Content**: "31 fossil relatives" is now "31 hominin lineages", because the count includes *H. sapiens* (living) and an informal group that is not a formally named species.
